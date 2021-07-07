@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "1002294232458",
+    "firebase_url": "https://farmers-d71d5-default-rtdb.firebaseio.com",
+    "project_id": "farmers-d71d5",
+    "storage_bucket": "farmers-d71d5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1002294232458:android:778e238b030543c12bb473",
+        "android_client_info": {
+          "package_name": "com.android.application"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1002294232458-mrquia9421r0dn83kmcsi5aq1jpntup1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGM6YrFBK3g3TQ3xb2zFoBskoI7CNOyQY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1002294232458-mrquia9421r0dn83kmcsi5aq1jpntup1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1002294232458:android:03a70eb68c389a232bb473",
+        "android_client_info": {
+          "package_name": "com.example.scufarmers"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1002294232458-mrquia9421r0dn83kmcsi5aq1jpntup1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGM6YrFBK3g3TQ3xb2zFoBskoI7CNOyQY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1002294232458-mrquia9421r0dn83kmcsi5aq1jpntup1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

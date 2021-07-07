@@ -1,15 +1,15 @@
 package com.example.scufarmers;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
-public class Farmer_Menu extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class VillageHead_Menu extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_farmer_menu);
+        setContentView(R.layout.activity_village_head_menu);
     }
 
     @Override
