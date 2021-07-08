@@ -19,6 +19,7 @@
         <activity android:name=".Register_Account" />
         <activity android:name=".VillageHead_Login" />
         <activity android:name=".Farmer_Menu" />
+        <activity android:name=".VillageHead_Menu" />
         <activity android:name=".Farmer_Login">
 
         </activity>
