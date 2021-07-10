@@ -31,9 +31,7 @@ public class Farmer_Login extends AppCompatActivity {
 
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                validate(Email.getText().toString(), Password.getText().toString());
-            }
+            public void onClick(View view) { validate(); }
         });
 
         VHLogin.setOnClickListener(new View.OnClickListener() {
@@ -49,11 +47,9 @@ public class Farmer_Login extends AppCompatActivity {
         });
     }
 
-    private void validate(String userEmail, String userPassword){
-        if((userEmail.equals("Admin")) && (userPassword.equals("1234"))){
-            Intent intent1 = new Intent(Farmer_Login.this, Farmer_Menu.class);
-            startActivity(intent1);
-        }
+    private void validate(){
+        Intent intent1 = new Intent(Farmer_Login.this, Farmer_Menu.class);
+        startActivity(intent1);
     }
 
     public void openVHLogin(){

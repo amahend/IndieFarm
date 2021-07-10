@@ -7,28 +7,26 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class Farmer_Menu extends AppCompatActivity {
+public class Farmer_Tool_Checkout extends AppCompatActivity {
 
-    private Button ToolCheckout;
+    private Button Checkout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_farmer_menu);
+        setContentView(R.layout.activity_farmer_tool_checkout);
 
-        ToolCheckout = (Button)findViewById(R.id.btnFarmerTool);
+        Checkout = (Button)findViewById(R.id.btnCheckout);
 
-        ToolCheckout.setOnClickListener(new View.OnClickListener() {
+        Checkout.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                openToolMenu();
-            }
+            public void onClick(View view) { openCheckoutDates(); }
         });
     }
 
-    public void openToolMenu(){
-        Intent intent2 = new Intent(Farmer_Menu.this, Farmer_Tool_Menu.class);
-        startActivity(intent2);
+    private void openCheckoutDates(){
+        Intent intent1 = new Intent(Farmer_Tool_Checkout.this, Farmer_Tool_Checkout_Dates.class);
+        startActivity(intent1);
     }
 
     @Override

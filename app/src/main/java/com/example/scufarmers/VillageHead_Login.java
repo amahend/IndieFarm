@@ -27,12 +27,10 @@ public class VillageHead_Login extends AppCompatActivity {
         SignUp = (Button)findViewById(R.id.btnSignUp);
 
 
-        /*Login.setOnClickListener(new View.OnClickListener() {
+        Login.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                validate(Username.getText().toString(), Password.getText().toString());
-            }
-        });*/
+            public void onClick(View view) { validate(); }
+        });
 
         FarmerLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,12 +43,10 @@ public class VillageHead_Login extends AppCompatActivity {
         });
     }
 
-    /*private void validate(String userEmail, String userPassword){
-        if((userEmail.equals("Admin")) && (userPassword.equals("1234"))){
-            Intent intent1 = new Intent(VillageHead_Login.this, VillageHead_menu.class);
-            startActivity(intent1);
-        }
-    }*/
+    private void validate(){
+        Intent intent1 = new Intent(VillageHead_Login.this, VillageHead_Menu.class);
+        startActivity(intent1);
+    }
 
     public void openFarmerLogin(){
         Intent intent2 = new Intent(VillageHead_Login.this, Farmer_Login.class);

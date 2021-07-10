@@ -2,33 +2,14 @@ package com.example.scufarmers;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 
-public class Farmer_Menu extends AppCompatActivity {
-
-    private Button ToolCheckout;
+public class Farmer_Tool_Checkout_Dates extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_farmer_menu);
-
-        ToolCheckout = (Button)findViewById(R.id.btnFarmerTool);
-
-        ToolCheckout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openToolMenu();
-            }
-        });
-    }
-
-    public void openToolMenu(){
-        Intent intent2 = new Intent(Farmer_Menu.this, Farmer_Tool_Menu.class);
-        startActivity(intent2);
+        setContentView(R.layout.activity_farmer_tool_checkout_dates);
     }
 
     @Override

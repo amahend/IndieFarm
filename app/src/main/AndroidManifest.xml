@@ -9,6 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".Farmer_Tool_Checkout_Dates"></activity>
+        <activity android:name=".Farmer_MyTools" />
+        <activity android:name=".Farmer_Tool_Menu" />
+        <activity android:name=".VillageHead_Tool" />
+        <activity android:name=".Farmer_Tool_Checkout" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,9 +25,7 @@
         <activity android:name=".VillageHead_Login" />
         <activity android:name=".Farmer_Menu" />
         <activity android:name=".VillageHead_Menu" />
-        <activity android:name=".Farmer_Login">
-
-        </activity>
+        <activity android:name=".Farmer_Login" />
     </application>
 
 </manifest>
