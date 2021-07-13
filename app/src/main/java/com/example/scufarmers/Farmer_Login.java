@@ -126,10 +126,10 @@ public class Farmer_Login extends AppCompatActivity {
                         System.out.println(flag[0]);
 
                         if (!flag[0]) {
-                            Toast.makeText(Farmer_Login.this, "Invalid credentials or user does not exist", Toast.LENGTH_LONG).show();
+                            // Toast.makeText(Farmer_Login.this, "Invalid credentials or user does not exist", Toast.LENGTH_LONG).show();
                         } else {
                             // @TODO - need to actually send over id and name through intent
-                            Toast.makeText(Farmer_Login.this, "Welcome " + emailParameter + "!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(Farmer_Login.this, "Welcome " + emailParameter + "!", Toast.LENGTH_SHORT).show();
                             Intent intent1 = new Intent(Farmer_Login.this, Farmer_Menu.class);
                             startActivity(intent1);
                         }
@@ -142,11 +142,15 @@ public class Farmer_Login extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
-                Toast.makeText(Farmer_Login.this, "Error getting villages from db", Toast.LENGTH_LONG).show();
+                Toast.makeText(Farmer_Login.this, "Error getting villages from db", Toast.LENGTH_SHORT).show();
             }
         });
 
         mQueue.add(request);
+
+//        if (!flag[0]) {
+//            Toast.makeText(Farmer_Login.this, "Invalid credentials or user does not exist", Toast.LENGTH_LONG).show();
+//        }
     }
 
     public void openVHLogin() {
