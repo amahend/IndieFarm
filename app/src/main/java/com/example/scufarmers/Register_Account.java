@@ -172,7 +172,7 @@ public class Register_Account extends AppCompatActivity  implements View.OnClick
             @Override
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
-                Toast.makeText(Register_Account.this, "Error getting villages from db", Toast.LENGTH_LONG).show();
+                Toast.makeText(Register_Account.this, "Error getting villages from db", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -241,7 +241,7 @@ public class Register_Account extends AppCompatActivity  implements View.OnClick
         try {
             createUserCall(fullName, email, password, age);
         } catch(Exception ex) {
-            Toast.makeText(Register_Account.this, "Error calling createUserPOST function", Toast.LENGTH_LONG).show();
+            Toast.makeText(Register_Account.this, "Error calling createUserPOST function", Toast.LENGTH_SHORT).show();
             Log.e("EXCEPTION", ex.toString());
         }
 
@@ -312,7 +312,7 @@ public class Register_Account extends AppCompatActivity  implements View.OnClick
             startActivity(villageHeadIntent);
             // Toast.makeText(Register_Account.this, "Welcome " + sourceRole + " " + fullName, Toast.LENGTH_LONG).show();
         }
-        Toast.makeText(Register_Account.this, "Welcome " + sourceRole + " " + fullName, Toast.LENGTH_LONG).show();
+        Toast.makeText(Register_Account.this, "Welcome " + sourceRole + " " + fullName, Toast.LENGTH_SHORT).show();
     }
 
     @Override
