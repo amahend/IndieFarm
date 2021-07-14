@@ -23,11 +23,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.HttpHeaderParser;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -45,7 +46,7 @@ public class Register_Account extends AppCompatActivity  implements View.OnClick
 
     String sourceRole, sourceGender, sourceVillage;
 
-    // @TODO think of a smart way for moving user data throuhg pages - create a class?
+    private RequestQueue mQueue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,23 +69,19 @@ public class Register_Account extends AppCompatActivity  implements View.OnClick
 
         // values to fill spinner dropdowns
         List<String> roles = new ArrayList<String>();
+        roles.add("no selection");
         roles.add("Village head");
         roles.add("Farmer");
 
         List<String> gender = new ArrayList<String>();
+        gender.add("no selection");
         gender.add("Male");
         gender.add("Female");
         gender.add("Other");
 
-        // @TODO make this into dynamic list from backend
-        List<String> villages = new ArrayList<String>();
-        villages.add("1");
-        villages.add("2");
-        villages.add("3");
-        villages.add("4");
-        villages.add("5");
+        mQueue = Volley.newRequestQueue(this);
+        List<String> villages = jsonParseVillages();
 
-        // @TODO set the initial values to the first in the list - maybe create 0 as just an empty value and fix toast by checking if empty no toast
         sourceRole = roles.get(0);
         sourceGender = gender.get(0);
         sourceVillage = villages.get(0);
@@ -142,6 +139,45 @@ public class Register_Account extends AppCompatActivity  implements View.OnClick
         });
 
 
+    }
+
+    private List<String> jsonParseVillages() {
+        String villagesURL = "https://us-central1-farmers-d71d5.cloudfunctions.net/user/villages";
+        List<String> villagesList = new ArrayList<String>();
+        villagesList.add("no selection");
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, villagesURL, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONArray jsonArray = response.getJSONArray("villages");
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject villages = jsonArray.getJSONObject(i);
+
+                        String id = villages.getString("id");
+                        String villageName = villages.getString("Villagename");
+                        String villageID = villages.getString("Villageid");
+
+                        System.out.println(id);
+                        System.out.println(villageName);
+                        System.out.println(villageID);
+
+                        villagesList.add(villageName);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                Toast.makeText(Register_Account.this, "Error getting villages from db", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        mQueue.add(request);
+        return villagesList;
     }
 
     @Override
@@ -205,7 +241,7 @@ public class Register_Account extends AppCompatActivity  implements View.OnClick
         try {
             createUserCall(fullName, email, password, age);
         } catch(Exception ex) {
-            Toast.makeText(Register_Account.this, "Error calling createUserPOST function", Toast.LENGTH_LONG).show();
+            Toast.makeText(Register_Account.this, "Error calling createUserPOST function", Toast.LENGTH_SHORT).show();
             Log.e("EXCEPTION", ex.toString());
         }
 
@@ -276,7 +312,7 @@ public class Register_Account extends AppCompatActivity  implements View.OnClick
             startActivity(villageHeadIntent);
             // Toast.makeText(Register_Account.this, "Welcome " + sourceRole + " " + fullName, Toast.LENGTH_LONG).show();
         }
-        Toast.makeText(Register_Account.this, "Welcome " + sourceRole + " " + fullName, Toast.LENGTH_LONG).show();
+        Toast.makeText(Register_Account.this, "Welcome " + sourceRole + " " + fullName, Toast.LENGTH_SHORT).show();
     }
 
     @Override
