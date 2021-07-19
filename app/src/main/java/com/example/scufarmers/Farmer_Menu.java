@@ -10,6 +10,7 @@ import android.widget.Button;
 public class Farmer_Menu extends AppCompatActivity {
 
     private Button ToolCheckout;
+    private Button SignOut;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +18,7 @@ public class Farmer_Menu extends AppCompatActivity {
         setContentView(R.layout.activity_farmer_menu);
 
         ToolCheckout = (Button)findViewById(R.id.btnFarmerTool);
+        SignOut = (Button)findViewById(R.id.btnSignOut);
 
         ToolCheckout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -24,10 +26,21 @@ public class Farmer_Menu extends AppCompatActivity {
                 openToolMenu();
             }
         });
+
+        SignOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openSignOut();
+            }
+        });
     }
 
     public void openToolMenu(){
-        Intent intent2 = new Intent(Farmer_Menu.this, Farmer_Tool_Menu.class);
+        Intent intent = new Intent(Farmer_Menu.this, Farmer_Tool_Menu.class);
+        startActivity(intent);
+    }
+    public void openSignOut(){
+        Intent intent2 = new Intent(Farmer_Menu.this, MainActivity.class);
         startActivity(intent2);
     }
 

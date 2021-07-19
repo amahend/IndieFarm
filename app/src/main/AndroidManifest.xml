@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".Farmer_Tool_Checkout_Dates"></activity>
+        <activity android:name=".Farmer_Tool_Return_Success"></activity>
+        <activity android:name=".Farmer_Tool_Return" />
+        <activity android:name=".Farmer_Tool_Checkout_Dates" />
         <activity android:name=".Farmer_MyTools" />
         <activity android:name=".Farmer_Tool_Menu" />
         <activity android:name=".VillageHead_Tool" />

@@ -11,6 +11,7 @@ public class Farmer_Tool_Menu extends AppCompatActivity {
 
     private Button MyTools;
     private Button FarmerToolCheckout;
+    private Button ToolReturn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +20,7 @@ public class Farmer_Tool_Menu extends AppCompatActivity {
 
         MyTools = (Button)findViewById(R.id.btnMyTools);
         FarmerToolCheckout = (Button)findViewById(R.id.btnFarmerToolCheckout);
+        ToolReturn = (Button)findViewById(R.id.btnToolReturn);
 
         MyTools.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -28,6 +30,11 @@ public class Farmer_Tool_Menu extends AppCompatActivity {
         FarmerToolCheckout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { openFarmerToolCheckout(); }
+        });
+
+        ToolReturn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { openToolReturn(); }
         });
     }
 
@@ -39,6 +46,11 @@ public class Farmer_Tool_Menu extends AppCompatActivity {
     public void openFarmerToolCheckout(){
         Intent intent2 = new Intent(Farmer_Tool_Menu.this, Farmer_Tool_Checkout.class);
         startActivity(intent2);
+    }
+
+    private void openToolReturn(){
+        Intent intent1 = new Intent(Farmer_Tool_Menu.this, Farmer_Tool_Return.class);
+        startActivity(intent1);
     }
 
     @Override

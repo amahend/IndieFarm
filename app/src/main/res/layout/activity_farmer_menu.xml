@@ -101,9 +101,20 @@
             android:layout_width="match_parent"
             android:layout_height="216dp"
             android:background="#00FFFFFF" />
-
-        <!--Button for Tool Checkout-->
     </RelativeLayout>
+
+    <Button
+        android:id="@+id/btnSignOut"
+        android:layout_width="274dp"
+        android:layout_height="49dp"
+        android:background="@drawable/green_fill__rounded_color"
+        android:text="Sign Out"
+        android:textColor="#FFFFFF"
+        app:backgroundTint="#3ddc64"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class VillageHead_Menu extends AppCompatActivity {
 
     private Button ToolCheckout;
+    private Button SignOut;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +18,7 @@ public class VillageHead_Menu extends AppCompatActivity {
         setContentView(R.layout.activity_village_head_menu);
 
         ToolCheckout = (Button)findViewById(R.id.btnVHTool);
+        SignOut = (Button)findViewById(R.id.btnSignOut);
 
         ToolCheckout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -24,10 +26,22 @@ public class VillageHead_Menu extends AppCompatActivity {
                 openToolCheckout();
             }
         });
+
+        SignOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openSignOut();
+            }
+        });
     }
 
     public void openToolCheckout(){
         Intent intent2 = new Intent(VillageHead_Menu.this, VillageHead_Tool.class);
+        startActivity(intent2);
+    }
+
+    public void openSignOut(){
+        Intent intent2 = new Intent(VillageHead_Menu.this, MainActivity.class);
         startActivity(intent2);
     }
 
