@@ -38,6 +38,10 @@ public class Farmer_Login extends AppCompatActivity {
 
     private RequestQueue mQueue;
 
+//    String userIDTOSEND = "";
+//    String emailTOSEND = "";
+//    String fullNameTOSEND = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,9 +60,6 @@ public class Farmer_Login extends AppCompatActivity {
             public void onClick(View view) {
                 String StringEmail = email.getText().toString().trim();
                 String StringPassword = password.getText().toString().trim();
-                System.out.println("+++++++++++");
-                System.out.println(StringEmail);
-                System.out.println("+++++++++++");
                 returnUserCredentials(StringEmail, StringPassword);
             }
         });
@@ -86,53 +87,62 @@ public class Farmer_Login extends AppCompatActivity {
             public void onResponse(JSONObject response) {
                 try {
                     JSONArray jsonArray = response.getJSONArray("users");
+                    String userID = "";
+                    String fullName = "";
+                    String tempEmail = "";
+                    String tempPassword = "";
+                    String age = "";
+                    String role = "";
+                    String gender = "";
+                    String village = "";
+                    String loggedIn = "";
+
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject users = jsonArray.getJSONObject(i);
 
-                        String id = users.getString("id");
-                        String fullName = users.getString("fullName");
-                        String tempEmail = users.getString("email");
-                        String tempPassword = users.getString("password");
-                        String age = users.getString("age");
-                        String role = users.getString("role");
-                        String gender = users.getString("gender");
-                        String village = users.getString("village");
-                        String loggedIn = users.getString("loggedIn");
-
-                        System.out.println("OUTSIDE");
-                        System.out.println("**********");
-                        System.out.println(emailParameter);
-                        System.out.println(tempEmail);
-                        System.out.println(emailParameter.getClass().getName());
-                        System.out.println(tempEmail.getClass().getName());
-
-                        System.out.println("**********");
-                        System.out.println(passwordParameter);
-                        System.out.println(tempPassword);
-                        System.out.println(passwordParameter.getClass().getName());
-                        System.out.println(tempPassword.getClass().getName());
-
-                        System.out.println("**********");
-                        System.out.println(role);
-                        System.out.println(role.getClass().getName());
-                        System.out.println("Farmer");
+                        userID = users.getString("id");
+                        fullName = users.getString("fullName");
+                        tempEmail = users.getString("email");
+                        tempPassword = users.getString("password");
+                        age = users.getString("age");
+                        role = users.getString("role");
+                        gender = users.getString("gender");
+                        village = users.getString("village");
+                        loggedIn = users.getString("loggedIn");
 
                         if (emailParameter.equals(tempEmail) && passwordParameter.equals(tempPassword) && role.equals("Farmer")) {
-                            System.out.println("INSIDE");
+                            // System.out.println("INSIDE");
                             // flag[0] = true;
                             flag[0] = true;
+                            break;
                         }
 
+                        System.out.println("FLAG");
                         System.out.println(flag[0]);
+                    }
 
-                        if (!flag[0]) {
-                            // Toast.makeText(Farmer_Login.this, "Invalid credentials or user does not exist", Toast.LENGTH_LONG).show();
-                        } else {
-                            // @TODO - need to actually send over id and name through intent
-                            Toast.makeText(Farmer_Login.this, "Welcome " + emailParameter + "!", Toast.LENGTH_SHORT).show();
-                            Intent intent1 = new Intent(Farmer_Login.this, Farmer_Menu.class);
-                            startActivity(intent1);
-                        }
+                    if (!flag[0]) {
+                        // Toast.makeText(Farmer_Login.this, "Invalid credentials or user does not exist", Toast.LENGTH_LONG).show();
+                    } else {
+                        // @TODO - need to actually send over id and name through intent
+                        Toast.makeText(Farmer_Login.this, "Welcome " + emailParameter + "!", Toast.LENGTH_SHORT).show();
+                        Intent intent1 = new Intent(Farmer_Login.this, Farmer_Menu.class);
+//                        userIDTOSEND = userID;
+//                        emailTOSEND = tempEmail;
+//                        fullNameTOSEND = fullName;
+//                        System.out.println("FARMER LOGIN BEGIN");
+//                        System.out.println(emailTOSEND);
+//                        System.out.println(userIDTOSEND);
+//                        System.out.println(fullNameTOSEND);
+                        System.out.println("PLEASE WORK");
+                        System.out.println(userID);
+                        System.out.println(tempEmail);
+                        System.out.println(fullName);
+                        intent1.putExtra("USERID", userID);
+                        intent1.putExtra("EMAIL", tempEmail);
+                        intent1.putExtra("FULLNAME", fullName);
+                        startActivity(intent1);
+                        // break;
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -145,6 +155,11 @@ public class Farmer_Login extends AppCompatActivity {
                 Toast.makeText(Farmer_Login.this, "Error getting villages from db", Toast.LENGTH_SHORT).show();
             }
         });
+
+//        System.out.println("FARMER LOGIN END");
+//        System.out.println(emailTOSEND);
+//        System.out.println(userIDTOSEND);
+//        System.out.println(fullNameTOSEND);
 
         mQueue.add(request);
 
