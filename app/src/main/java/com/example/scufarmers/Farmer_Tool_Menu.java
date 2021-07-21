@@ -13,6 +13,10 @@ public class Farmer_Tool_Menu extends AppCompatActivity {
     private Button FarmerToolCheckout;
     private Button ToolReturn;
 
+    String userID = "";
+    String email = "";
+    String fullName = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +25,14 @@ public class Farmer_Tool_Menu extends AppCompatActivity {
         MyTools = (Button)findViewById(R.id.btnMyTools);
         FarmerToolCheckout = (Button)findViewById(R.id.btnFarmerToolCheckout);
         ToolReturn = (Button)findViewById(R.id.btnToolReturn);
+
+        userID = getIntent().getStringExtra("USERID");
+        email = getIntent().getStringExtra("EMAIL");
+        fullName = getIntent().getStringExtra("FULLNAME");
+//        System.out.println("IN FARMER TOOL MENU ON CREATE");
+//        System.out.println(userID);
+//        System.out.println(email);
+//        System.out.println(fullName);
 
         MyTools.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,12 +57,19 @@ public class Farmer_Tool_Menu extends AppCompatActivity {
 
     public void openFarmerToolCheckout(){
         Intent intent2 = new Intent(Farmer_Tool_Menu.this, Farmer_Tool_Checkout.class);
+        intent2.putExtra("USERID", userID);
+        intent2.putExtra("EMAIL", email);
+        intent2.putExtra("FULLNAME", fullName);
+//        System.out.println("IN FARMER TOOL MENU");
+//        System.out.println(userID);
+//        System.out.println(email);
+//        System.out.println(fullName);
         startActivity(intent2);
     }
 
     private void openToolReturn(){
-        Intent intent1 = new Intent(Farmer_Tool_Menu.this, Farmer_Tool_Return.class);
-        startActivity(intent1);
+        Intent intent3 = new Intent(Farmer_Tool_Menu.this, Farmer_Tool_Return.class);
+        startActivity(intent3);
     }
 
     @Override
