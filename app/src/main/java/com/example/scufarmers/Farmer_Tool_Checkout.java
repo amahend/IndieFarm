@@ -200,21 +200,23 @@ public class Farmer_Tool_Checkout extends AppCompatActivity {
         checkoutDate = tempCheckoutDate.toString().substring(0, 10);
         returnDate = tempReturnDate.toString().substring(0, 10);
 
-        System.out.println("%%%%%%%%%%%%%%%");
-        System.out.println(checkoutItemName);
-        System.out.println(checkoutItemID);
-        System.out.println(checkoutDate);
-        System.out.println(returnDate);
-        System.out.println(userID);
-        System.out.println(email);
-        System.out.println("%%%%%%%%%%%%%%%");
+//        System.out.println("%%%%%%%%%%%%%%%");
+//        System.out.println(checkoutItemName);
+//        System.out.println(checkoutItemID);
+//        System.out.println(checkoutDate);
+//        System.out.println(returnDate);
+//        System.out.println(userID);
+//        System.out.println(email);
+//        System.out.println("%%%%%%%%%%%%%%%");
 
         Intent intent1 = new Intent(Farmer_Tool_Checkout.this, Farmer_Tool_Checkout_Dates.class);
         intent1.putExtra("USERID", userID);
         intent1.putExtra("EMAIL", email);
         intent1.putExtra("FULLNAME", fullName);
-        intent1.putExtra("CHECKOUTITEMID", checkoutItemName);
+        intent1.putExtra("CHECKOUTITEMNAME", checkoutItemName);
         intent1.putExtra("CHECKOUTITEMID", checkoutItemID);
+        intent1.putExtra("CHECKOUTDATE", checkoutDate);
+        intent1.putExtra("RETURNDATE", returnDate);
 
         // do the put call here - should probably be another function but I do not have time
         String checkoutURL = "https://us-central1-farmers-d71d5.cloudfunctions.net/user/checkout/" + checkoutItemID;

@@ -29,10 +29,10 @@ public class Farmer_Tool_Menu extends AppCompatActivity {
         userID = getIntent().getStringExtra("USERID");
         email = getIntent().getStringExtra("EMAIL");
         fullName = getIntent().getStringExtra("FULLNAME");
-        System.out.println("IN FARMER TOOL MENU ON CREATE");
-        System.out.println(userID);
-        System.out.println(email);
-        System.out.println(fullName);
+//        System.out.println("IN FARMER TOOL MENU ON CREATE");
+//        System.out.println(userID);
+//        System.out.println(email);
+//        System.out.println(fullName);
 
         MyTools.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,10 +60,10 @@ public class Farmer_Tool_Menu extends AppCompatActivity {
         intent2.putExtra("USERID", userID);
         intent2.putExtra("EMAIL", email);
         intent2.putExtra("FULLNAME", fullName);
-        System.out.println("IN FARMER TOOL MENU");
-        System.out.println(userID);
-        System.out.println(email);
-        System.out.println(fullName);
+//        System.out.println("IN FARMER TOOL MENU");
+//        System.out.println(userID);
+//        System.out.println(email);
+//        System.out.println(fullName);
         startActivity(intent2);
     }
 

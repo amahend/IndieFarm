@@ -27,10 +27,10 @@ public class Farmer_Menu extends AppCompatActivity {
         userID = getIntent().getStringExtra("USERID");
         email = getIntent().getStringExtra("EMAIL");
         fullName = getIntent().getStringExtra("FULLNAME");
-        System.out.println("IN FARMER MENU");
-        System.out.println(userID);
-        System.out.println(email);
-        System.out.println(fullName);
+//        System.out.println("IN FARMER MENU");
+//        System.out.println(userID);
+//        System.out.println(email);
+//        System.out.println(fullName);
 
         ToolCheckout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,10 +52,10 @@ public class Farmer_Menu extends AppCompatActivity {
         intent.putExtra("USERID", userID);
         intent.putExtra("EMAIL", email);
         intent.putExtra("FULLNAME", fullName);
-        System.out.println("IN FARMER MENU ONCLICK");
-        System.out.println(userID);
-        System.out.println(email);
-        System.out.println(fullName);
+//        System.out.println("IN FARMER MENU ONCLICK");
+//        System.out.println(userID);
+//        System.out.println(email);
+//        System.out.println(fullName);
         startActivity(intent);
     }
     public void openSignOut(){

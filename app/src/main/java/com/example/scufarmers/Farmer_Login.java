@@ -134,10 +134,11 @@ public class Farmer_Login extends AppCompatActivity {
 //                        System.out.println(emailTOSEND);
 //                        System.out.println(userIDTOSEND);
 //                        System.out.println(fullNameTOSEND);
-                        System.out.println("PLEASE WORK");
-                        System.out.println(userID);
-                        System.out.println(tempEmail);
-                        System.out.println(fullName);
+
+//                        System.out.println("PLEASE WORK");
+//                        System.out.println(userID);
+//                        System.out.println(tempEmail);
+//                        System.out.println(fullName);
                         intent1.putExtra("USERID", userID);
                         intent1.putExtra("EMAIL", tempEmail);
                         intent1.putExtra("FULLNAME", fullName);

@@ -6,10 +6,36 @@ import android.os.Bundle;
 
 public class Farmer_Tool_Checkout_Dates extends AppCompatActivity {
 
+    String userID = "";
+    String email = "";
+    String fullName = "";
+    String checkoutItemID = "";
+    String checkoutItemName = "";
+    String checkoutDate = "";
+    String returnDate = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_farmer_tool_checkout_dates);
+
+        userID = getIntent().getStringExtra("USERID");
+        email = getIntent().getStringExtra("EMAIL");
+        fullName = getIntent().getStringExtra("FULLNAME");
+        checkoutItemID = getIntent().getStringExtra("CHECKOUTITEMID");
+        checkoutItemName = getIntent().getStringExtra("CHECKOUTITEMNAME");
+        checkoutDate = getIntent().getStringExtra("CHECKOUTDATE");
+        returnDate = getIntent().getStringExtra("RETURNDATE");
+
+        System.out.println("%%%%%%% IN FARMER TOOL CHECKOUT DATES %%%%%%%%");
+        System.out.println(checkoutItemName);
+        System.out.println(checkoutItemID);
+        System.out.println(checkoutDate);
+        System.out.println(returnDate);
+        System.out.println(userID);
+        System.out.println(email);
+        System.out.println("%%%%%%% IN FARMER TOOL CHECKOUT DATES %%%%%%%%");
+
     }
 
     @Override
