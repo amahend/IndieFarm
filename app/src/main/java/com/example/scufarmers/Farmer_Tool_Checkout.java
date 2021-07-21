@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -35,6 +36,7 @@ import java.util.Date;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Farmer_Tool_Checkout extends AppCompatActivity {
 
@@ -119,7 +121,13 @@ public class Farmer_Tool_Checkout extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View view) {
-                openCheckoutDates();
+                try {
+                    openCheckoutDates();
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
@@ -217,27 +225,46 @@ public class Farmer_Tool_Checkout extends AppCompatActivity {
         jsonCheckout.put("email", email);
         jsonCheckout.put("fullName", fullName);
         jsonCheckout.put("userId", userID);
-
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.PUT, checkoutURL, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }, new Response.Listener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    error.printStackTrace();
-                    Toast.makeText(Farmer_Tool_Checkout.this, "Error making request", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        mQueue.add(request);
+        final String requestBody = jsonCheckout.toString();
 
         // should implement some sort of loading screen as I make the put call
+        StringRequest stringRequest = new StringRequest(Request.Method.PUT, checkoutURL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.i("VOLLEY", response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("VOLLEY", error.toString());
+            }
+        }) {
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+
+            @Override
+            public byte[] getBody() throws AuthFailureError {
+                try {
+                    return requestBody == null ? null : requestBody.getBytes("utf-8");
+                } catch (UnsupportedEncodingException uee) {
+                    VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
+                    return null;
+                }
+            }
+
+            @Override
+            protected Response<String> parseNetworkResponse(NetworkResponse response) {
+                String responseString = "";
+                if (response != null) {
+                    responseString = String.valueOf(response.statusCode);
+                }
+                return Response.success(responseString, HttpHeaderParser.parseCacheHeaders(response));
+            }
+        };
+
+        mQueue.add(stringRequest);
 
         startActivity(intent1);
     }
