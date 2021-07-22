@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
@@ -11,17 +12,23 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -142,6 +149,7 @@ public class Farmer_Login extends AppCompatActivity {
                         intent1.putExtra("USERID", userID);
                         intent1.putExtra("EMAIL", tempEmail);
                         intent1.putExtra("FULLNAME", fullName);
+                        updateLoginStatusTrue(userID);
                         startActivity(intent1);
                         // break;
                     }
@@ -167,6 +175,51 @@ public class Farmer_Login extends AppCompatActivity {
 //        if (!flag[0]) {
 //            Toast.makeText(Farmer_Login.this, "Invalid credentials or user does not exist", Toast.LENGTH_LONG).show();
 //        }
+    }
+
+    private void updateLoginStatusTrue(String userID) throws JSONException {
+        String updateLoginStatusURL = "https://us-central1-farmers-d71d5.cloudfunctions.net/user/" + userID;
+        JSONObject jsonCheckout = new JSONObject();
+        jsonCheckout.put("loggedIn", "true");
+        final String requestBody = jsonCheckout.toString();
+
+        StringRequest stringRequest = new StringRequest(Request.Method.PUT, updateLoginStatusURL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.i("VOLLEY", response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("VOLLEY", error.toString());
+            }
+        }) {
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+
+            @Override
+            public byte[] getBody() throws AuthFailureError {
+                try {
+                    return requestBody == null ? null : requestBody.getBytes("utf-8");
+                } catch (UnsupportedEncodingException uee) {
+                    VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
+                    return null;
+                }
+            }
+
+            @Override
+            protected Response<String> parseNetworkResponse(NetworkResponse response) {
+                String responseString = "";
+                if (response != null) {
+                    responseString = String.valueOf(response.statusCode);
+                }
+                return Response.success(responseString, HttpHeaderParser.parseCacheHeaders(response));
+            }
+        };
+
+        mQueue.add(stringRequest);
     }
 
     public void openVHLogin() {
