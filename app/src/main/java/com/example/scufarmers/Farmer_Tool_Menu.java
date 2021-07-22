@@ -72,6 +72,9 @@ public class Farmer_Tool_Menu extends AppCompatActivity {
 
     private void openToolReturn(){
         Intent intent3 = new Intent(Farmer_Tool_Menu.this, Farmer_Tool_Return.class);
+        intent3.putExtra("USERID", userID);
+        intent3.putExtra("EMAIL", email);
+        intent3.putExtra("FULLNAME", fullName);
         startActivity(intent3);
     }
 

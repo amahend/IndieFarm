@@ -1,8 +1,10 @@
 package com.example.scufarmers;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -11,9 +13,24 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
+import com.android.volley.toolbox.HttpHeaderParser;
+import com.android.volley.toolbox.StringRequest;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,20 +96,82 @@ public class Farmer_Tool_Return extends AppCompatActivity {
             }
 
             @Override
-            public void onNothingSelgit ected(AdapterView<?> parent) {
+            public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
 
         Return.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
-            public void onClick(View view) { openReturn(); }
+            public void onClick(View view) {
+//                try {
+//                    openReturn();
+//                } catch (UnsupportedEncodingException e) {
+//                    e.printStackTrace();
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+                openReturn();
+            }
         });
     }
 
     private List<List<String>> jsonParseToolsReturn() {
+        String inventoryURL = "https://us-central1-farmers-d71d5.cloudfunctions.net/user/inventory";
+
+        List<String> inventoryList = new ArrayList<String>();
+        inventoryList.add("no selection");
+
+        List<String> inventoryID = new ArrayList<String>();
+        inventoryID.add("no selection");
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, inventoryURL, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONArray jsonArray = response.getJSONArray("inventory");
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject inventory = jsonArray.getJSONObject(i);
+
+                        String id = inventory.getString("id");
+                        String villageID = inventory.getString("Villageid");
+                        String itemName = inventory.getString("Itemname");
+                        String userIdReturn = inventory.getString("userId");
+
+                        System.out.println("********* FARMER TOOL RETURN **********");
+                        System.out.println("userID");
+                        System.out.println(userID);
+                        System.out.println("userIdReturn");
+                        System.out.println(userIdReturn);
+                        if (userIdReturn.equals(userID)) {
+                            inventoryList.add(itemName);
+                            inventoryID.add(id);
+                            System.out.println("********* INSIDE **********");
+                            System.out.println(itemName);
+                            System.out.println(id);
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                Toast.makeText(Farmer_Tool_Return.this, "Error getting inventory from db", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        mQueue.add(request);
+        System.out.println(inventoryID);
+        result.add(inventoryList);
+        result.add(inventoryID);
+        return result;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void openReturn(){
         Intent intent = new Intent(Farmer_Tool_Return.this, Farmer_Tool_Return_Success.class);
         intent.putExtra("USERID", userID);
