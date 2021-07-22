@@ -149,6 +149,7 @@ public class Farmer_Tool_Checkout extends AppCompatActivity {
             public void onResponse(JSONObject response) {
                 try {
                     JSONArray jsonArray = response.getJSONArray("inventory");
+
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject inventory = jsonArray.getJSONObject(i);
 
@@ -156,12 +157,27 @@ public class Farmer_Tool_Checkout extends AppCompatActivity {
                         String villageID = inventory.getString("Villageid");
                         String itemName = inventory.getString("Itemname");
 
+                        String userIdTemp = inventory.getString("userId");
+                        String returnDateTemp = inventory.getString("returnDate");
+                        String checkoutDateTemp = inventory.getString("checkoutDate");
+                        String fullNameTemp = inventory.getString("fullName");
+                        String emailTemp = inventory.getString("email");
+                        String inUseTemp = inventory.getString("inUse");
+
 //                        System.out.println(id);
 //                        System.out.println(villageID);
 //                        System.out.println(itemName);
+//                        System.out.println(userIdTemp);
+//                        System.out.println(returnDateTemp);
+//                        System.out.println(checkoutDateTemp);
+//                        System.out.println(fullNameTemp);
+//                        System.out.println(emailTemp);
+//                        System.out.println(inUseTemp);
 
-                        inventoryList.add(itemName);
-                        inventoryID.add(id);
+                        if (inUseTemp.equals("false")) {
+                            inventoryList.add(itemName);
+                            inventoryID.add(id);
+                        }
                         // inventoryDetails.put(itemName, id);
                     }
                 } catch (JSONException e) {
