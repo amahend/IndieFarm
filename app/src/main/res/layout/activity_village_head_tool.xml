@@ -1,217 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".VillageHead_Tool">
 
-  <!--Orange Background Image-->
-  <ImageView
-      android:id="@+id/imageView"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:adjustViewBounds="true"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.0"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintVertical_bias="0.001"
-      app:srcCompat="@drawable/orange_bg_tool" />
+  <androidx.constraintlayout.widget.ConstraintLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
 
-  <ImageView
-      android:id="@+id/logo"
-      android:layout_width="85dp"
-      android:layout_height="85dp"
-      app:layout_constraintBottom_toBottomOf="@+id/imageView"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.191"
-      app:layout_constraintStart_toStartOf="@+id/imageView"
-      app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintVertical_bias="0.369"
-      app:srcCompat="@drawable/logoonly" />
+    <!--Orange Background Image-->
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.001"
+        app:srcCompat="@drawable/orange_bg_tool" />
 
-  <!--"Tool Checkout" Title-->
-  <TextView
-      android:id="@+id/textView"
-      android:layout_width="188dp"
-      android:layout_height="95dp"
-      android:text="Tool Checkout"
-      android:textSize="40dp"
-      android:textStyle="bold"
-      android:textColor="#FFB437"
-      app:layout_constraintBottom_toBottomOf="@+id/imageView"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.965"
-      app:layout_constraintStart_toStartOf="@+id/imageView"
-      app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintVertical_bias="0.388" />
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.191"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.369"
+        app:srcCompat="@drawable/logoonly" />
 
-  <LinearLayout
-      android:id="@+id/linearlayout1"
-      android:layout_width="377dp"
-      android:layout_height="511dp"
-      android:clickable="true"
-      android:orientation="vertical"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/imageView"
-      app:layout_constraintVertical_bias="0.0">
+    <!--"Tools in Use" Title-->
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="188dp"
+        android:layout_height="95dp"
+        android:text="Tools In Use"
+        android:textColor="#FFB437"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.965"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.388" />
 
-    <LinearLayout
-        android:id="@+id/linearlayout2"
+    <RelativeLayout
+        android:id="@+id/relativeLayout9"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:clickable="true"
-        android:orientation="horizontal">
-
-      <LinearLayout
-          android:id="@+id/linearlayout3"
-          android:layout_width="match_parent"
-          android:layout_height="100dp"
-          android:background="@drawable/orange_border_cornwe"
-          android:clickable="false"
-          android:orientation="vertical"
-          android:weightSum="2">
-
-        <TextView
-            android:id="@+id/tvFullName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:hint="Full Name"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tvTool"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:hint="Tool"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/tvCheckout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:hint="Checkout Date"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/tvReturn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:hint="Return Date"
-            android:textSize="18sp" />
-
-      </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearlayout4"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="@drawable/orange_border_cornwe"
-        android:clickable="false"
-        android:orientation="vertical"
-        android:weightSum="2">
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView">
 
       <TextView
-          android:id="@+id/tvFullName2"
-          android:layout_width="match_parent"
+          android:id="@+id/tvResult"
+          android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_weight="1"
-          android:gravity="center"
-          android:hint="Full Name"
-          android:textSize="20sp"
-          android:textStyle="bold" />
+          android:textColor="@color/black"
+          android:textSize="15dp" />
+    </RelativeLayout>
 
-      <TextView
-          android:id="@+id/tvTool2"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_weight="1"
-          android:gravity="center"
-          android:hint="Tool"
-          android:textSize="18sp" />
+  </androidx.constraintlayout.widget.ConstraintLayout>
 
-      <TextView
-          android:id="@+id/tvCheckout2"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_weight="1"
-          android:gravity="center"
-          android:hint="Checkout Date"
-          android:textSize="18sp" />
-
-      <TextView
-          android:id="@+id/tvReturn2"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_weight="1"
-          android:gravity="center"
-          android:hint="Return Date"
-          android:textSize="18sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearlayout5"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="@drawable/orange_border_cornwe"
-        android:clickable="false"
-        android:orientation="vertical"
-        android:weightSum="2">
-
-      <TextView
-          android:id="@+id/tvFullName3"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_weight="1"
-          android:gravity="center"
-          android:hint="Full Name"
-          android:textSize="20sp"
-          android:textStyle="bold" />
-
-      <TextView
-          android:id="@+id/tvTool3"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_weight="1"
-          android:gravity="center"
-          android:hint="Tool"
-          android:textSize="18sp" />
-
-      <TextView
-          android:id="@+id/tvCheckout3"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_weight="1"
-          android:gravity="center"
-          android:hint="Checkout Date"
-          android:textSize="18sp" />
-
-      <TextView
-          android:id="@+id/tvReturn3"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_weight="1"
-          android:gravity="center"
-          android:hint="Return Date"
-          android:textSize="18sp" />
-
-    </LinearLayout>
-
-  </LinearLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
