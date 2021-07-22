@@ -221,7 +221,7 @@ public class Farmer_Tool_Checkout extends AppCompatActivity {
         // do the put call here - should probably be another function but I do not have time
         String checkoutURL = "https://us-central1-farmers-d71d5.cloudfunctions.net/user/checkout/" + checkoutItemID;
         JSONObject jsonCheckout = new JSONObject();
-        jsonCheckout.put("inUse", true);
+        jsonCheckout.put("inUse", "true");
         jsonCheckout.put("checkoutDate", checkoutDate);
         jsonCheckout.put("returnDate", returnDate);
         jsonCheckout.put("email", email);

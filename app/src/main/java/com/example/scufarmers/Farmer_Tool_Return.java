@@ -193,7 +193,7 @@ public class Farmer_Tool_Return extends AppCompatActivity {
 
         String checkoutURL = "https://us-central1-farmers-d71d5.cloudfunctions.net/user/checkout/" + returnItemID;
         JSONObject jsonCheckout = new JSONObject();
-        jsonCheckout.put("inUse", false);
+        jsonCheckout.put("inUse", "false");
         jsonCheckout.put("checkoutDate", "null");
         jsonCheckout.put("returnDate", "null");
         jsonCheckout.put("email", "null");
