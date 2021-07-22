@@ -177,7 +177,7 @@ public class Farmer_Tool_Checkout extends AppCompatActivity {
         });
 
         mQueue.add(request);
-        System.out.println(inventoryID);
+        // System.out.println(inventoryID);
         result.add(inventoryList);
         result.add(inventoryID);
         return result;

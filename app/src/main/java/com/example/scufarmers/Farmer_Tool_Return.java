@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -112,7 +113,11 @@ public class Farmer_Tool_Return extends AppCompatActivity {
 //                } catch (JSONException e) {
 //                    e.printStackTrace();
 //                }
-                openReturn();
+                try {
+                    openReturn();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
@@ -139,17 +144,17 @@ public class Farmer_Tool_Return extends AppCompatActivity {
                         String itemName = inventory.getString("Itemname");
                         String userIdReturn = inventory.getString("userId");
 
-                        System.out.println("********* FARMER TOOL RETURN **********");
-                        System.out.println("userID");
-                        System.out.println(userID);
-                        System.out.println("userIdReturn");
-                        System.out.println(userIdReturn);
+//                        System.out.println("********* FARMER TOOL RETURN **********");
+//                        System.out.println("userID");
+//                        System.out.println(userID);
+//                        System.out.println("userIdReturn");
+//                        System.out.println(userIdReturn);
                         if (userIdReturn.equals(userID)) {
                             inventoryList.add(itemName);
                             inventoryID.add(id);
-                            System.out.println("********* INSIDE **********");
-                            System.out.println(itemName);
-                            System.out.println(id);
+//                            System.out.println("********* INSIDE **********");
+//                            System.out.println(itemName);
+//                            System.out.println(id);
                         }
                     }
                 } catch (JSONException e) {
@@ -165,20 +170,75 @@ public class Farmer_Tool_Return extends AppCompatActivity {
         });
 
         mQueue.add(request);
-        System.out.println(inventoryID);
+        // System.out.println(inventoryID);
         result.add(inventoryList);
         result.add(inventoryID);
         return result;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private void openReturn(){
+    private void openReturn() throws JSONException {
+        System.out.println("********* FARMER TOOL RETURN **********");
+        System.out.println("returnItemID");
+        System.out.println(returnItemID);
+        System.out.println("returnItemName");
+        System.out.println(returnItemName);
+
         Intent intent = new Intent(Farmer_Tool_Return.this, Farmer_Tool_Return_Success.class);
         intent.putExtra("USERID", userID);
         intent.putExtra("EMAIL", email);
         intent.putExtra("FULLNAME", fullName);
         intent.putExtra("RETURNITEMID", returnItemID);
         intent.putExtra("RETURNITEMNAME", returnItemName);
+
+        String checkoutURL = "https://us-central1-farmers-d71d5.cloudfunctions.net/user/checkout/" + returnItemID;
+        JSONObject jsonCheckout = new JSONObject();
+        jsonCheckout.put("inUse", false);
+        jsonCheckout.put("checkoutDate", "null");
+        jsonCheckout.put("returnDate", "null");
+        jsonCheckout.put("email", "null");
+        jsonCheckout.put("fullName", "null");
+        jsonCheckout.put("userId", "null");
+        final String requestBody = jsonCheckout.toString();
+
+        StringRequest stringRequest = new StringRequest(Request.Method.PUT, checkoutURL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.i("VOLLEY", response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("VOLLEY", error.toString());
+            }
+        }) {
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+
+            @Override
+            public byte[] getBody() throws AuthFailureError {
+                try {
+                    return requestBody == null ? null : requestBody.getBytes("utf-8");
+                } catch (UnsupportedEncodingException uee) {
+                    VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
+                    return null;
+                }
+            }
+
+            @Override
+            protected Response<String> parseNetworkResponse(NetworkResponse response) {
+                String responseString = "";
+                if (response != null) {
+                    responseString = String.valueOf(response.statusCode);
+                }
+                return Response.success(responseString, HttpHeaderParser.parseCacheHeaders(response));
+            }
+        };
+
+        mQueue.add(stringRequest);
+
         startActivity(intent);
     }
 }
