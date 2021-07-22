@@ -75,53 +75,66 @@ public class VillageHead_Login extends AppCompatActivity {
             public void onResponse(JSONObject response) {
                 try {
                     JSONArray jsonArray = response.getJSONArray("users");
+                    String userID = "";
+                    String fullName = "";
+                    String tempEmail = "";
+                    String tempPassword = "";
+                    String age = "";
+                    String role = "";
+                    String gender = "";
+                    String village = "";
+                    String loggedIn = "";
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject users = jsonArray.getJSONObject(i);
 
-                        String id = users.getString("id");
-                        String fullName = users.getString("fullName");
-                        String tempEmail = users.getString("email");
-                        String tempPassword = users.getString("password");
-                        String age = users.getString("age");
-                        String role = users.getString("role");
-                        String gender = users.getString("gender");
-                        String village = users.getString("village");
-                        String loggedIn = users.getString("loggedIn");
+                        userID = users.getString("id");
+                        fullName = users.getString("fullName");
+                        tempEmail = users.getString("email");
+                        tempPassword = users.getString("password");
+                        age = users.getString("age");
+                        role = users.getString("role");
+                        gender = users.getString("gender");
+                        village = users.getString("village");
+                        loggedIn = users.getString("loggedIn");
 
-                        System.out.println("OUTSIDE");
-                        System.out.println("**********");
-                        System.out.println(emailParameter);
-                        System.out.println(tempEmail);
-                        System.out.println(emailParameter.getClass().getName());
-                        System.out.println(tempEmail.getClass().getName());
-
-                        System.out.println("**********");
-                        System.out.println(passwordParameter);
-                        System.out.println(tempPassword);
-                        System.out.println(passwordParameter.getClass().getName());
-                        System.out.println(tempPassword.getClass().getName());
-
-                        System.out.println("**********");
-                        System.out.println(role);
-                        System.out.println(role.getClass().getName());
-                        System.out.println("Farmer");
+//                        System.out.println("OUTSIDE");
+//                        System.out.println("**********");
+//                        System.out.println(emailParameter);
+//                        System.out.println(tempEmail);
+//                        System.out.println(emailParameter.getClass().getName());
+//                        System.out.println(tempEmail.getClass().getName());
+//
+//                        System.out.println("**********");
+//                        System.out.println(passwordParameter);
+//                        System.out.println(tempPassword);
+//                        System.out.println(passwordParameter.getClass().getName());
+//                        System.out.println(tempPassword.getClass().getName());
+//
+//                        System.out.println("**********");
+//                        System.out.println(role);
+//                        System.out.println(role.getClass().getName());
+//                        System.out.println("Farmer");
 
                         if (emailParameter.equals(tempEmail) && passwordParameter.equals(tempPassword) && role.equals("Village head")) {
                             System.out.println("INSIDE");
                             // flag[0] = true;
                             flag[0] = true;
+                            break;
                         }
 
                         System.out.println(flag[0]);
 
-                        if (!flag[0]) {
-                            // Toast.makeText(VillageHead_Login.this, "Invalid credentials or user does not exist", Toast.LENGTH_LONG).show();
-                        } else {
-                            // @TODO - need to actually send over id and name through intent
-                            Toast.makeText(VillageHead_Login.this, "Welcome " + emailParameter + "!", Toast.LENGTH_SHORT).show();
-                            Intent intent1 = new Intent(VillageHead_Login.this, VillageHead_Menu.class);
-                            startActivity(intent1);
-                        }
+                    }
+
+                    if (!flag[0]) {
+                        // Toast.makeText(VillageHead_Login.this, "Invalid credentials or user does not exist", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(VillageHead_Login.this, "Welcome " + emailParameter + "!", Toast.LENGTH_SHORT).show();
+                        Intent intent1 = new Intent(VillageHead_Login.this, VillageHead_Menu.class);
+                        intent1.putExtra("USERID", userID);
+                        intent1.putExtra("EMAIL", tempEmail);
+                        intent1.putExtra("FULLNAME", fullName);
+                        startActivity(intent1);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

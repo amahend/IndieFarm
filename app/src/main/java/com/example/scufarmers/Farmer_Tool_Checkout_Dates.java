@@ -36,14 +36,14 @@ public class Farmer_Tool_Checkout_Dates extends AppCompatActivity {
         checkoutDate = getIntent().getStringExtra("CHECKOUTDATE");
         returnDate = getIntent().getStringExtra("RETURNDATE");
 
-        System.out.println("%%%%%%% IN FARMER TOOL CHECKOUT DATES %%%%%%%%");
-        System.out.println(checkoutItemName);
-        System.out.println(checkoutItemID);
-        System.out.println(checkoutDate);
-        System.out.println(returnDate);
-        System.out.println(userID);
-        System.out.println(email);
-        System.out.println("%%%%%%% IN FARMER TOOL CHECKOUT DATES %%%%%%%%");
+//        System.out.println("%%%%%%% IN FARMER TOOL CHECKOUT DATES %%%%%%%%");
+//        System.out.println(checkoutItemName);
+//        System.out.println(checkoutItemID);
+//        System.out.println(checkoutDate);
+//        System.out.println(returnDate);
+//        System.out.println(userID);
+//        System.out.println(email);
+//        System.out.println("%%%%%%% IN FARMER TOOL CHECKOUT DATES %%%%%%%%");
 
         tvCheckoutDate = findViewById(R.id.tvCheckout);
         tvReturnDate = findViewById(R.id.tvReturn);
